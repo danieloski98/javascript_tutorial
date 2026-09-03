@@ -33,15 +33,15 @@ let objectA = {
 
 let objectB = objectA;
 
-// console.log(`Is objectA equal to objectB? ${objectA === objectB}`);
-// console.log(`Is a equal to b? ${a === b}`);
+console.log(`Is objectA equal to objectB? ${objectA === objectB}`);
+console.log(`Is a equal to b? ${a === b}`);
 
-// console.log(`Is a greater than b? ${a > b}`);
-// console.log(`Is a less than b? ${a < b}`);
-// console.log(`Is a greater than or equal to b? ${a >= b}`);
-// console.log(`Is a less than or equal to b? ${a <= b}`);
-// console.log(`Is a equal to b? ${a === b}`);
-// console.log(`Is a not equal to b? ${a != b}`);
+console.log(`Is a greater than b? ${a > b}`);
+console.log(`Is a less than b? ${a < b}`);
+console.log(`Is a greater than or equal to b? ${a >= b}`);
+console.log(`Is a less than or equal to b? ${a <= b}`);
+console.log(`Is a equal to b? ${a === b}`);
+console.log(`Is a not equal to b? ${a != b}`);
 
 // LOGICAL OPERATORS
 // let isTrue = true;
