@@ -26,3 +26,29 @@ console.log(getStudentDetails(students[4])); // John Doe has a grade of 89 and i
  * 
  * create another function to get their grades and their list of subjects, it should be return in an object
  *  */ 
+
+function getStudentGrade(student) {
+let { name, grade,  } = student;
+if (student.grade >= PASSING_GRADE) {
+return { mark: "pass" };
+}
+return { mark: "fail" };
+}
+
+for (let i = 0; i < students.length; i++) {
+    console.log(getStudentGrade(students[i]));
+}
+
+function getStudentGradeList(student) {
+    let { subject, grade } = student;
+
+    if (grade >= PASSING_GRADE) {
+        return { subject: subject, grade: grade, mark: "pass" };
+    }
+
+    return { subject: subject, grade: grade, mark: "fail" };
+}
+
+for (let i = 0; i < students.length; i++) {
+    console.log(getStudentGradeList(students[i]));
+}
