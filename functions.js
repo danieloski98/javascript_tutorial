@@ -25,30 +25,31 @@ console.log(getStudentDetails(students[4])); // John Doe has a grade of 89 and i
  * create a functions that check each student grade, it should return an object with mark which can either be pass or fail, based on the grade
  * 
  * create another function to get their grades and their list of subjects, it should be return in an object
- *  */ 
+ *  */
 
-function getStudentGrade(student) {
-let { name, grade,  } = student;
-if (student.grade >= PASSING_GRADE) {
-return { mark: "pass" };
+
+
+function getStudentGrade(student) {   //Created the function name 
+let {  grade,  } = student;     // created a variable using object destructuring to get the name and grade of the student
+if (student.grade >= PASSING_GRADE) {  //created a conditional statement to check if the student grade is greater than or equal to the passing grade
+return { mark: "pass" };  //return an object with the mark if the condition is true
 }
-return { mark: "fail" };
+return { mark: "fail" }; //return an object with the mark if the condition is false
 }
 
-for (let i = 0; i < students.length; i++) {
+for (let i = 0; i < students.length; i++) {  //created a for loop to show the scores of every student in the array
     console.log(getStudentGrade(students[i]));
 }
 
-function getStudentGradeList(student) {
-    let { subject, grade } = student;
+function getStudentGradeList(student) {  //Created the function name
+    let { subject, grade } = student;  // created a variable using object destructuring to get the subject and grade of the student
 
-    if (grade >= PASSING_GRADE) {
-        return { subject: subject, grade: grade, mark: "pass" };
+    if (grade >= PASSING_GRADE) {  //created a conditional statement to check if the student grade is greater than or equal to the passing grade
+        return { subject: subject, grade: grade, mark: "pass" }; //return an object with the subject, grade and mark:pass if the condition is true
     }
-
-    return { subject: subject, grade: grade, mark: "fail" };
+    return { subject: subject, grade: grade, mark: "fail" }; //return an object with the subject, grade and mark:fail if the condition is false
 }
 
-for (let i = 0; i < students.length; i++) {
+for (let i = 0; i < students.length; i++) {  //created a for loop to show the subject, grades and marks of every student in the array
     console.log(getStudentGradeList(students[i]));
 }
