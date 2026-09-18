@@ -3,6 +3,7 @@ import StatusBadge from "./components/StatusBadge";
 import ActionMenu from "./components/ActionMenu";
 import DashboardWidget from "./components/DashboardWidget";
 import "./App.css";
+import { getDetails } from "./libs/functions";
 
 export default function App() {
   const teamMembers = [
@@ -50,7 +51,9 @@ export default function App() {
         <div>ACTION</div>
       </div>
 
-      {teamMembers.map((member) => (
+      {teamMembers.map((member) => {
+        console.log(getDetails(member))
+        return (
         <DashboardWidget key={member.id}>
           <TeamMemberCard
             name={member.name}
@@ -68,7 +71,8 @@ export default function App() {
             onPromote={() => promoteUser(member.name)}
           />
         </DashboardWidget>
-      ))}
+      )
+      })}
     </div>
   );
 }
