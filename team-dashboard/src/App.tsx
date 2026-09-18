@@ -67,7 +67,7 @@ export default function App() {
           />
 
           <ActionMenu
-            userName={member.name}
+            memberdetails={member}
             onPromote={() => promoteUser(member.name)}
           />
         </DashboardWidget>

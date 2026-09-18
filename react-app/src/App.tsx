@@ -21,13 +21,25 @@ function App() {
   const newHabbits = [...habits];
   setHabits(newHabbits);
  }
+
+ function editItem(index: number) {
+  if (isEdit === false) {
+    let item = habits[index]
+    setValue(item)
+    setIsEdit(true)
+  } else {
+    return
+  }
+  
+ }
+
   return (
     <div style={{ height: '100vh', width: '100%' }}>
       <Header text='My List' />
-      <Input value={value} onChange={(e) => setValue(e)} handleClick={(e) =>handleClick(e)} />
+      <Input value={value} onChange={(e) => setValue(e)} handleClick={(e) =>handleClick(e)} isEdit={isEdit} />
       <div style={{ marginTop: '20px' }}>
         {habits.map((item, index) => (
-          <ListItem key={index} text={item} index={index} handleDelete={(index) => handleDelete(index)} />
+          <ListItem key={index} text={item} index={index} handleDelete={(index) => handleDelete(index)} editItem={(index) => editItem(index) }  />
         ))}
       </div>
     </div>
