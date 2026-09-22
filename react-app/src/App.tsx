@@ -12,7 +12,18 @@ function App() {
   const [activeIndex, setActiveIndex] = useState<null|number>(null)
 
  function handleClick(e: string) {
-  
+  if (isEdit && activeIndex) {
+    habits[activeIndex] = e;
+    setHabits(habits)
+    setIsEdit(false)
+    setActiveIndex(null)
+    setValue('')
+  }
+  else {
+    setHabits([...habits, e]);
+    setValue('')
+  }
+
  }
 
  function handleDelete(index: number) {
@@ -22,6 +33,12 @@ function App() {
  }
 
  function editItem(index: number) {
+  setActiveIndex(index)
+  setIsEdit(true)
+const value = habits[index]
+setValue(value)
+
+
  
   
  }
