@@ -8,12 +8,11 @@ import ListItem from './components/list-item';
 function App() {
   const [value, setValue] = useState<string>('');
   const [habits, setHabits] = useState<string[]>([]);
-  const [isEdit, setIsEdit] = useState(false)
+  const [isEdit, setIsEdit] = useState(false);
+  const [activeIndex, setActiveIndex] = useState<null|number>(null)
 
  function handleClick(e: string) {
-  const newArray = [...habits, e];
-  setHabits(newArray);
-  setValue('');
+  
  }
 
  function handleDelete(index: number) {
@@ -23,13 +22,7 @@ function App() {
  }
 
  function editItem(index: number) {
-  if (isEdit === false) {
-    let item = habits[index]
-    setValue(item)
-    setIsEdit(true)
-  } else {
-    return
-  }
+ 
   
  }
 
