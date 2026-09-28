@@ -12,8 +12,7 @@ function App() {
   const [activeIndex, setActiveIndex] = useState<null|number>(null)
 
  function handleClick(e: string) {
-  if ( activeIndex && isEdit) {
-    console.log(activeIndex)
+  if (isEdit && activeIndex) {
     habits[activeIndex] = e;
     setHabits(habits)
     setIsEdit(false)
@@ -21,17 +20,9 @@ function App() {
     setValue('')
   }
   else {
-    if (e === '') {
-    return }
-    else {
- setHabits([...habits, e]);
+    setHabits([...habits, e]);
     setValue('')
-    }
   }
-  
-
-  
-  
 
  }
 
@@ -44,21 +35,20 @@ function App() {
  function editItem(index: number) {
   setActiveIndex(index)
   setIsEdit(true)
-  const value = habits[index]
-  setValue(value)
+const value = habits[index]
+setValue(value)
+
+
+ 
+  
  }
 
   return (
-    <div style={{ height: '100vh', width: '100%' }}>
-      <Header text='My List' />
-      <Input value={value} onChange={(e) => setValue(e)} handleClick={(e) =>handleClick(e)} isEdit={isEdit} />
-      <div style={{ marginTop: '20px' }}>
-        {habits.map((item, index) => (
-          <ListItem key={index} text={item} index={index} handleDelete={(index) => handleDelete(index)} editItem={(index) => editItem(index) }  />
-        ))}
-      </div>
+    <div>
+      <Type />
+      <Button />
+        
     </div>
   )
-}
-
-export default App
+  }
+  
