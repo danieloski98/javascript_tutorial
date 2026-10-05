@@ -1,13 +1,17 @@
-import Button from "./components/button"
-import Type from "./components/type"
 
-export default function App() {
+import './App.css'
+import Type from './components/type';
+import Button from './components/button';
+
+function App() {
+
   return (
     <div>
       <Type />
       <Button />
-        
     </div>
   )
   }
+
+export default App;
   

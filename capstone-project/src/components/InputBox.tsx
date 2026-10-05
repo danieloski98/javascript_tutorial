@@ -1,20 +1,30 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect,} from "react"
 import Input from "./Input"
 import Textarea from "./Textarea";
 import DatePicker from "./DatePicker";
 import Button from "./Button";
 import type { ITask } from "../types/Tasks";
 
-function InputBox() {
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
+interface Irender {
+    renderedTasks: ITask[];
+    setRenderedTasks: React.Dispatch<React.SetStateAction<ITask[]>>;
+    title: string;
+    setTitle:  React.Dispatch<React.SetStateAction<string>>;
+    description: string;
+    setDescription:  React.Dispatch<React.SetStateAction<string>>;
+    edit: number;
+    setEdit: React.Dispatch<React.SetStateAction<number>>;
+}
+
+ export default function InputBox({ renderedTasks, setRenderedTasks, title, setTitle, description, setDescription,edit, setEdit }: Irender) {
     const [startDate, setStartDate] = useState(new Date().toISOString());
     const [endDate, setEndDate] = useState(new Date().toISOString());
-    const [tasks, SetTasks] = useState<ITask[]>(JSON.parse(localStorage.getItem('tasks') as string));
+    
 
     useEffect(function() {
-       localStorage.setItem('tasks', JSON.stringify(tasks));
-    }, [tasks]);
+       localStorage.setItem('tasks', JSON.stringify(renderedTasks));
+    }, [renderedTasks]);
+
 
     function handleSubmit() {
         if (title === '' || description === '') {
@@ -22,19 +32,49 @@ function InputBox() {
             return;
         }
 
-        const newObject: ITask = {
-            title: title,
-            description: description,
-            endDate,
-            startDate,
-            status: 'ON_GOING',
-            completed: false,
-            id: tasks.length + 1,
+        if (edit === 0) {
+            handleCreate();
+        } else {
+            handleReup();
         }
-
-        SetTasks((prev) => [...prev, newObject]);
     }
 
+    function handleCreate () {
+          const newObject: ITask = {
+                title: title,
+                description: description,
+                endDate,
+                startDate,
+                status: 'ON_GOING',
+                completed: false,
+                id: renderedTasks.length + 1,
+            }
+            setRenderedTasks((prev) => [...prev, newObject]);
+            setTitle(" ")
+            setDescription(" ")
+                }
+
+        function handleReup() {
+          let reUp = renderedTasks.map((tasks) => {
+            if (tasks.id === edit) {
+                return {
+                    ...tasks,
+                    title: title,
+                    description: description,
+                    startDate: startDate,
+                    endDate: endDate
+                };
+            }
+            return tasks
+        })
+            setRenderedTasks(reUp);
+            setTitle(" ")
+            setDescription(" ")
+            setEdit(0)
+            
+    }
+        
+       
 
   return (
     <div className="w-full h-auto bg-white rounded-lg p-4 flex flex-col">
@@ -51,10 +91,9 @@ function InputBox() {
                     <DatePicker value={endDate} onChange={(e) => setEndDate(e)} label="END DATE"/>
                 </div>
             </div>
-            <Button onClick={() => handleSubmit()} label="Create Task" />
+            <Button onClick={handleSubmit} label={edit !== 0 ? "Update Task" : "Create Task"} 
+             />
         </div>
     </div>
   )
 }
-
-export default InputBox
